@@ -1,0 +1,294 @@
+/* General body styling */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #45225a;
+  color: #181717;
+  line-height: 1.6;
+}
+
+/* Header styling */
+header {
+  background-color: #45225a;
+  padding: 20px 0;
+}
+
+header h1 {
+  text-align: center;
+  margin: 0;
+  color: #ffffff;
+  font-size: 2.5em;
+}
+
+/* Navigation menu styling */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav ul li {
+  margin: 0 15px;
+}
+
+nav ul li a {
+  color: #e3f6f5;
+  text-decoration: none;
+  font-size: 1.1em;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+  color: #fffffe;
+}
+
+/* Main content area styling */
+main {
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  max-width: 500px;
+  margin: auto;
+}
+
+/* Section styling */
+section {
+  background-color: #251b30;
+  padding: 30px;
+  margin: 20px 0;
+  border-radius: 0px;
+  box-shadow: 0 0 15px #6d6d70;
+  animation: slideIn 1s ease-in-out;
+}
+
+section h2 {
+  margin-top: 0;
+  color: #ffffff;
+  font-size: 2em;
+  text-align: center;
+}
+
+/* Form styling */
+form {
+  display: grid;
+  grid-gap: 15px;
+}
+
+form input,
+form textarea,
+form button {
+  margin: 10px 0;
+  padding: 15px;
+  font-size: 1em;
+  font-style: oblique;
+}
+
+/* Input and textarea styling */
+form input,
+form textarea {
+  border: 1px solid #edf3f3;
+  border-radius: 0px;
+  background-color: #fdfcfd;
+  color: #45225a;
+}
+
+form input:focus,
+form textarea:focus {
+  border-color: #eaecf1;
+  outline: none;
+  box-shadow: 0 0 5px #fafafe;
+}
+
+/* Button styling */
+form button {
+  background-color: #fdfcfd;
+  color: #343241;
+  border: 1px solid #020203;
+  border-radius: 5px;
+  cursor: pointer;
+  font-style: normal;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+form button:hover {
+  background-color: #dde0e0;
+  transform: scale(1.05);
+}
+
+/* Blog form specific styling */
+#blog-form textarea {
+  height: 150px;
+}
+
+#blog-form button.delete {
+  background-color: rgb(55, 44, 44);
+  color: #fff;
+}
+
+#blog-form button.delete:hover {
+  background-color: rgb(14, 12, 12);
+}
+
+/* Content styling */
+#content {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Search filter styling */
+#search-filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 30px;
+  background-color: #251b30;
+  border-radius: 0px;
+  box-shadow: 0 0 15px #ffffff;
+}
+
+#search-input,
+#category-filter {
+  padding: 15px;
+  font-size: 1em;
+  border: 1px solid #e3f6f5;
+  border-radius: 5px;
+  background-color: #fdfcfd;
+  color: #333;
+  width: 48%;
+}
+
+#search-input::placeholder {
+  color: #080808;
+}
+
+#search-input:focus,
+#category-filter:focus {
+  border-color: #0f101a;
+  outline: none;
+  box-shadow: 0 0 5px #ffffff;
+}
+
+/* Category dropdown styling */
+#category {
+  width: 100%;
+  height: 40px;
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 10px 6px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#category option {
+  color: #272343;
+}
+
+/* Blog posts styling */
+#blog-posts article {
+  background-color: #f6f2f2;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 5px #ffffff;
+}
+
+#blog-posts h3 {
+  margin-top: 0;
+  color: #251b30;
+  font-size: 1.8em;
+}
+
+#blog-posts p {
+  color: #251b30;
+  line-height: 1.4;
+}
+
+#blog-posts p strong {
+  color: #251b30;
+}
+
+/* Link styling inside forms */
+form a {
+  color: #ffffff;
+  text-align: center;
+  display: block;
+  margin-top: 10px;
+}
+
+form a:hover {
+  color: #b3a6ba;
+}
+
+/* Edit blog form specific styling */
+#edit-blog-form {
+  background-color: #2b1f39;
+  padding: 40px;
+  margin: 20px auto;
+  border-radius: 8px;
+  max-width: 600px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.edit-label {
+  color: #ffffff;
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.edit-input {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #ffffff;
+  background-color: #ffffff;
+  color: #2b1f39;
+}
+
+.edit-textarea {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #ffffff;
+  background-color: #ffffff;
+  color: #2b1f39;
+  height: 150px;
+  resize: vertical;
+}
+
+.edit-button {
+  background-color: #45225a;
+  color: #ffffff;
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.edit-button:hover {
+  background-color: #5c2a7d;
+  transform: scale(1.05);
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+  #search-filter {
+    flex-direction: column;
+  }
+
+  #search-input,
+  #category-filter {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  #edit-blog-form {
+    padding: 20px;
+    margin: 10px;
+  }
+}

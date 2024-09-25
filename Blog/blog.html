@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog Platform</title>
+  <link rel="stylesheet" href="../style.css" />
+  <script src="validation.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Blog Platform</h1>
+    <nav>
+      <ul>
+        <li><a href="home.php">Home</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section id="add-blog-post">
+      <h2>Add a New Blog Post</h2>
+      <form id="blog-form" method="POST" action="blogProcess.php">
+        <input
+          type="text"
+          name="title"
+          placeholder="Title"
+          id="title"
+          required
+        />
+        <input
+          type="text"
+          name="author"
+          placeholder="Author"
+          id="author"
+          required
+        />
+        <textarea
+          name="content"
+          placeholder="Content"
+          id="content"
+          required
+        ></textarea>
+        <select name="category" id="category" required>
+          <option value="" disabled selected>Select a category</option>
+          <option value="Technology">Technology</option>
+          <option value="Lifestyle">Lifestyle</option>
+          <option value="Education">Education</option>
+          <option value="Health">Health</option>
+          <option value="Business">Business</option>
+        </select>
+        <button type="submit" id="add-post">Add Post</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
