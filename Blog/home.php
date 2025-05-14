@@ -29,68 +29,117 @@ if ($result === FALSE) {
 <html lang="en">
 
 <head>
-    <!-- Metadata and link to external CSS -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Blog Platform</title>
+    <title><?php echo $searchQuery ? "Search: $searchQuery" : "Home"; ?> | CST8285 Blog</title>
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
-    <!-- Header section with the page title and navigation menu -->
     <header>
-        <h1>Blog Platform</h1>
-        <nav>
-            <ul>
-                <li><a href="../Authentication/logout.php">Logout</a></li>
-                <li><a href="home.php">Home</a></li>
-                <li><a href="blog.html">Add Blog</a></li>
-            </ul>
-        </nav>
+        <div class="header-bg"></div>
+        <div class="container header-content">
+            <div class="site-branding">
+                <i class="fas fa-laptop-code site-logo"></i>
+                <h1 class="site-title">CST8285 Blog</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="home.php" class="active"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="blog.html"><i class="fas fa-pen-fancy"></i> Write</a></li>
+                    <li><a href="../Authentication/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
+
     <main>
-        <!-- Form to search for blog posts -->
-        <form method="GET" action="home.php" id="search-filter">
-            <input id="search-input" type="text" name="search" placeholder="Search blogs..."
-                value="<?php echo htmlspecialchars($searchQuery); ?>">
-            <button type="submit">Search</button>
-        </form>
+        <div class="container">
+            <!-- Search Form -->
+            <div class="search-container animate-fade-in">
+                <form method="GET" action="home.php">
+                    <input type="text" name="search" class="search-input" placeholder="Search posts, authors, or topics..." value="<?php echo htmlspecialchars($searchQuery); ?>">
+                    <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
 
-        <!-- Section to display all blog posts -->
-        <section id="blog-posts">
-            <h2>All Blog Posts</h2>
-            <?php
-            // Check if there are any blog posts in the result
-            if ($result->num_rows > 0) {
-                // Loop through each blog post and display its details
-                while ($row = $result->fetch_assoc()) {
-                    echo "<article>";
-                    echo "<h3>" . htmlspecialchars($row['title']) . "</h3>";
-                    echo "<p><strong>Author:</strong> " . htmlspecialchars($row['author']) . "</p>";
-                    echo "<p><strong>Category:</strong> " . htmlspecialchars($row['category']) . "</p>";
-                    echo "<p>" . nl2br(htmlspecialchars($row['content'])) . "</p>";
+            <!-- Blog Posts Section -->
+            <section class="animate-fade-in">
+                <h2 class="section-title"><?php echo $searchQuery ? "Search Results" : "Latest Posts"; ?></h2>
+                <?php if ($searchQuery): ?>
+                    <p class="section-subtitle">Showing results for "<?php echo htmlspecialchars($searchQuery); ?>"</p>
+                <?php else: ?>
+                    <p class="section-subtitle">Discover the latest thoughts and ideas</p>
+                <?php endif; ?>
 
-                    // Form to edit the blog post
-                    echo "<form method='GET' action='editBlog.php'>";
-                    echo "<input type='hidden' name='id' value='" . htmlspecialchars($row['id']) . "'>";
-                    echo "<button type='submit'>Edit</button>";
-                    echo "</form>";
-
-                    // Form to delete the blog post with a confirmation prompt
-                    echo "<form method='POST' action='blogdeletion.php' onsubmit='return confirm(\"Are you sure you want to delete this post?\");'>";
-                    echo "<input type='hidden' name='id' value='" . htmlspecialchars($row['id']) . "'>";
-                    echo "<button type='submit'>Delete</button>";
-                    echo "</form>";
-
-                    echo "</article><hr>";
-                }
-            } else {
-                // Message to display if no blog posts are available
-                echo "<p>No blog posts available.</p>";
-            }
-            ?>
-        </section>
+                <?php if ($result->num_rows > 0): ?>
+                    <div class="blog-grid">
+                        <?php while ($row = $result->fetch_assoc()): ?>
+                            <article class="blog-card animate-fade-in">
+                                <div class="blog-card-content">
+                                    <h3 class="blog-card-title"><?php echo htmlspecialchars($row['title']); ?></h3>
+                                    
+                                    <div class="blog-card-meta">
+                                        <span class="blog-card-meta-item">
+                                            <i class="fas fa-user"></i> <?php echo htmlspecialchars($row['author']); ?>
+                                        </span>
+                                        <span class="blog-card-meta-item">
+                                            <i class="fas fa-tag"></i> 
+                                            <span class="category-badge"><?php echo htmlspecialchars($row['category']); ?></span>
+                                        </span>
+                                        <span class="blog-card-meta-item">
+                                            <i class="far fa-calendar-alt"></i> 
+                                            <?php echo date('M j, Y', strtotime($row['created_at'])); ?>
+                                        </span>
+                                    </div>
+                                    
+                                    <div class="blog-card-excerpt">
+                                        <?php 
+                                            $content = htmlspecialchars($row['content']);
+                                            echo nl2br(substr($content, 0, 150)) . (strlen($content) > 150 ? '...' : '');
+                                        ?>
+                                    </div>
+                                    
+                                    <div class="blog-card-actions">
+                                        <form method="GET" action="editBlog.php">
+                                            <input type="hidden" name="id" value="<?php echo htmlspecialchars($row['id']); ?>">
+                                            <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i> Edit</button>
+                                        </form>
+                                        <form method="POST" action="blogdeletion.php" onsubmit="return confirm('Are you sure you want to delete this post?');">
+                                            <input type="hidden" name="id" value="<?php echo htmlspecialchars($row['id']); ?>">
+                                            <button type="submit" class="btn btn-delete"><i class="fas fa-trash-alt"></i> Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </article>
+                        <?php endwhile; ?>
+                    </div>
+                <?php else: ?>
+                    <div class="empty-state">
+                        <i class="fas fa-file-alt empty-state-icon"></i>
+                        <h3 class="empty-state-title">No posts found</h3>
+                        <?php if ($searchQuery): ?>
+                            <p class="empty-state-description">We couldn't find any posts matching "<?php echo htmlspecialchars($searchQuery); ?>"</p>
+                            <a href="home.php" class="btn btn-primary"><i class="fas fa-home"></i> Back to Home</a>
+                        <?php else: ?>
+                            <p class="empty-state-description">Share your first post with the world!</p>
+                            <a href="blog.html" class="btn btn-primary"><i class="fas fa-pen-fancy"></i> Create Post</a>
+                        <?php endif; ?>
+                    </div>
+                <?php endif; ?>
+            </section>
+        </div>
     </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-laptop-code"></i> CST8285 Blog
+            </div>
+            <p class="footer-copyright">&copy; 2024 CST8285 Blog Platform. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 
 </html>

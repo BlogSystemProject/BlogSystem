@@ -3,54 +3,106 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blog Platform</title>
+  <title>Create Post | CST8285 Blog</title>
   <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="validation.js" defer></script>
 </head>
 <body>
   <header>
-    <h1>Blog Platform</h1>
-    <nav>
-      <ul>
-        <li><a href="home.php">Home</a></li>
-      </ul>
-    </nav>
+    <div class="header-bg"></div>
+    <div class="container header-content">
+      <div class="site-branding">
+        <i class="fas fa-laptop-code site-logo"></i>
+        <h1 class="site-title">CST8285 Blog</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="home.php"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="blog.html" class="active"><i class="fas fa-pen-fancy"></i> Write</a></li>
+          <li><a href="../Authentication/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
+  
   <main>
-    <section id="add-blog-post">
-      <h2>Add a New Blog Post</h2>
-      <form id="blog-form" method="POST" action="blogProcess.php">
-        <input
-          type="text"
-          name="title"
-          placeholder="Title"
-          id="title"
-          required
-        />
-        <input
-          type="text"
-          name="author"
-          placeholder="Author"
-          id="author"
-          required
-        />
-        <textarea
-          name="content"
-          placeholder="Content"
-          id="content"
-          required
-        ></textarea>
-        <select name="category" id="category" required>
-          <option value="" disabled selected>Select a category</option>
-          <option value="Technology">Technology</option>
-          <option value="Lifestyle">Lifestyle</option>
-          <option value="Education">Education</option>
-          <option value="Health">Health</option>
-          <option value="Business">Business</option>
-        </select>
-        <button type="submit" id="add-post">Add Post</button>
-      </form>
-    </section>
+    <div class="container">
+      <section class="card animate-fade-in">
+        <h2 class="section-title">Create New Post</h2>
+        <p class="section-subtitle">Share your thoughts and ideas with the world</p>
+        
+        <div class="form-container">
+          <form id="blog-form" method="POST" action="blogProcess.php">
+            <div class="form-group">
+              <label for="title"><i class="fas fa-heading"></i> Title</label>
+              <input 
+                type="text" 
+                name="title" 
+                id="title" 
+                class="form-control" 
+                placeholder="Give your post a captivating title" 
+                required 
+              />
+            </div>
+            
+            <div class="form-group">
+              <label for="author"><i class="fas fa-user"></i> Author</label>
+              <input 
+                type="text" 
+                name="author" 
+                id="author" 
+                class="form-control" 
+                placeholder="Your name" 
+                required 
+              />
+            </div>
+            
+            <div class="form-group">
+              <label for="category"><i class="fas fa-tag"></i> Category</label>
+              <select name="category" id="category" class="form-control" required>
+                <option value="" disabled selected>Select a category</option>
+                <option value="Technology">Technology</option>
+                <option value="Lifestyle">Lifestyle</option>
+                <option value="Education">Education</option>
+                <option value="Health">Health</option>
+                <option value="Business">Business</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="content"><i class="fas fa-paragraph"></i> Content</label>
+              <textarea 
+                name="content" 
+                id="content" 
+                class="form-control" 
+                placeholder="Write your blog post content here..." 
+                required
+              ></textarea>
+              <small class="form-text text-muted mt-1">Format your text with line breaks for better readability.</small>
+            </div>
+            
+            <div class="form-actions">
+              <button type="submit" id="add-post" class="btn btn-primary btn-block">
+                <i class="fas fa-paper-plane"></i> Publish Post
+              </button>
+              <a href="home.php" class="btn-link text-center mt-2">
+                <i class="fas fa-arrow-left"></i> Cancel and return to home
+              </a>
+            </div>
+          </form>
+        </div>
+      </section>
+    </div>
   </main>
+  
+  <footer>
+    <div class="container footer-content">
+      <div class="footer-logo">
+        <i class="fas fa-laptop-code"></i> CST8285 Blog
+      </div>
+      <p class="footer-copyright">&copy; 2024 CST8285 Blog Platform. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
 </html>

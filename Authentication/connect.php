@@ -1,11 +1,14 @@
 <?php
 
 // Database connection details
-$host = "localhost";
-$user = "root";
-$pass = "";
-$db = "Assignment02";
-
+// $host = "localhost";
+// $user = "root";
+// $pass = "";
+// $db = "Assignment02";
+$host = "sql103.infinityfree.com";
+$user = "if0_38984493";
+$pass = "Limestone570";
+$db = "if0_38984493_users";
 // Create a connection to the MySQL server
 $conn = new mysqli($host, $user, $pass);
 

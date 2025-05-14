@@ -65,53 +65,90 @@ $conn->close();
 <html lang="en">
 
 <head>
-    <!-- Metadata and link to external CSS -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Blog - Blog Platform</title>
+    <title>Edit Post | CST8285 Blog</title>
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
-    <!-- Header section with the page title -->
     <header>
-        <h1>Edit Blog Post</h1>
+        <div class="header-bg"></div>
+        <div class="container header-content">
+            <div class="site-branding">
+                <i class="fas fa-laptop-code site-logo"></i>
+                <h1 class="site-title">CST8285 Blog</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="home.php"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="blog.html"><i class="fas fa-pen-fancy"></i> Write</a></li>
+                    <li><a href="../Authentication/logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
+
     <main>
-        <!-- Section containing the form to edit the blog post -->
-        <section id="edit-blog-form">
-            <!-- Form to submit the updated blog post data -->
-            <form method="POST" action="editBlog.php">
-                <!-- Hidden input to store the blog post ID -->
-                <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-
-                <!-- Input field for the blog title -->
-                <label for="title" class="edit-label">Title:</label>
-                <input type="text" id="title" name="title" class="edit-input"
-                    value="<?php echo htmlspecialchars($row['title']); ?>" required><br>
-
-                <!-- Input field for the blog author -->
-                <label for="author" class="edit-label">Author:</label>
-                <input type="text" id="author" name="author" class="edit-input"
-                    value="<?php echo htmlspecialchars($row['author']); ?>" required><br>
-
-                <!-- Dropdown menu for selecting the blog category -->
-                <label for="category" class="edit-label">Category:</label>
-                <select name="category" id="category" required>
-                    <option value="" disabled>Select a category</option>
-                    <?php echo $categoryOptions; ?>
-                </select><br>
-
-                <!-- Textarea for the blog content -->
-                <label for="content" class="edit-label">Content:</label>
-                <textarea id="content" name="content" class="edit-textarea"
-                    required><?php echo htmlspecialchars($row['content']); ?></textarea><br>
-
-                <!-- Submit button to update the blog post -->
-                <button type="submit" class="edit-button">Update Blog</button>
-            </form>
-        </section>
+        <div class="container">
+            <section class="card animate-fade-in">
+                <h2 class="section-title">Edit Post</h2>
+                <p class="section-subtitle">Update your content and ideas</p>
+                
+                <div class="form-container">
+                    <form method="POST" action="editBlog.php">
+                        <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                        
+                        <div class="form-group">
+                            <label for="title"><i class="fas fa-heading"></i> Title</label>
+                            <input type="text" id="title" name="title" class="form-control"
+                                value="<?php echo htmlspecialchars($row['title']); ?>" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="author"><i class="fas fa-user"></i> Author</label>
+                            <input type="text" id="author" name="author" class="form-control"
+                                value="<?php echo htmlspecialchars($row['author']); ?>" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="category"><i class="fas fa-tag"></i> Category</label>
+                            <select name="category" id="category" class="form-control" required>
+                                <option value="" disabled>Select a category</option>
+                                <?php echo $categoryOptions; ?>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="content"><i class="fas fa-paragraph"></i> Content</label>
+                            <textarea id="content" name="content" class="form-control"
+                                required><?php echo htmlspecialchars($row['content']); ?></textarea>
+                            <small class="form-text text-muted mt-1">Format your text with line breaks for better readability.</small>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-block">
+                                <i class="fas fa-save"></i> Update Post
+                            </button>
+                            <a href="home.php" class="btn-link text-center mt-2">
+                                <i class="fas fa-times"></i> Cancel and return to home
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
     </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-laptop-code"></i> CST8285 Blog
+            </div>
+            <p class="footer-copyright">&copy; 2024 CST8285 Blog Platform. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 
 </html>
