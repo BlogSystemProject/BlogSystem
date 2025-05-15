@@ -1,32 +1,26 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 // Database connection details
 // $host = "localhost";
 // $user = "root";
 // $pass = "";
 // $db = "Assignment02";
-$host = "sql103.infinityfree.com";
+
+// InfinityFree connection settings
+$host = "sql103.infinityfree.com"; // Use localhost for InfinityFree
 $user = "if0_38984493";
 $pass = "Limestone570";
-$db = "if0_38984493_users";
-// Create a connection to the MySQL server
-$conn = new mysqli($host, $user, $pass);
+$db = "if0_38984493_user";
 
-// Check if the connection was successful
+// Connect directly to the database
+$conn = new mysqli($host, $user, $pass, $db);
+
+// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
-// Create the database if it doesn't already exist
-$sql = "CREATE DATABASE IF NOT EXISTS $db";
-if ($conn->query($sql) === TRUE) {
-    echo "Database created successfully<br>";
-} else {
-    die("Error creating database: " . $conn->error);
-}
-
-// Select the database to use
-$conn->select_db($db);
 
 // Create the 'users' table if it doesn't already exist
 $sql = "CREATE TABLE IF NOT EXISTS users (
@@ -36,10 +30,7 @@ $sql = "CREATE TABLE IF NOT EXISTS users (
     email VARCHAR(100) NOT NULL UNIQUE, 
     password VARCHAR(255) NOT NULL 
 )";
-if ($conn->query($sql) === TRUE) {
-    echo "Table created successfully<br>";
-} else {
+if ($conn->query($sql) !== TRUE) {
     die("Error creating table: " . $conn->error);
 }
-
 ?>

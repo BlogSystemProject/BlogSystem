@@ -1,32 +1,29 @@
 <?php
+// Enable error reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 // Database connection details
 // $servername = "localhost";
 // $username = "root";
 // $password = "";
 // $dbname = "Assignment02";
-$servername = "sql103.infinityfree.com";
+
+// InfinityFree connection settings
+$servername = "localhost"; // Use localhost for InfinityFree
 $username = "if0_38984493";
 $password = "Limestone570";
 $dbname = "if0_38984493_blogs";
-// Create a connection to the MySQL server
-$conn = new mysqli($servername, $username, $password);
 
-// Check if the connection was successful
+// Connect directly to the database
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Create the database if it doesn't already exist
-$sql = "CREATE DATABASE IF NOT EXISTS $dbname";
-if ($conn->query($sql) === TRUE) {
-    // If the database was created successfully, select it for use
-    $conn->select_db($dbname);
-} else {
-    // If there was an error creating the database, display an error message
-    die("Error creating database: " . $conn->error);
-}
-
-// SQL query to create the 'blogs' table if it doesn't already exist
+// Create table if needed
 $sql = "CREATE TABLE IF NOT EXISTS blogs (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL, 
@@ -35,10 +32,7 @@ $sql = "CREATE TABLE IF NOT EXISTS blogs (
     category VARCHAR(100) NOT NULL, 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
 )";
-
-// Check if the table creation was successful
 if ($conn->query($sql) !== TRUE) {
-    // If there was an error creating the table, display an error message
     die("Error creating table: " . $conn->error);
 }
 ?>
